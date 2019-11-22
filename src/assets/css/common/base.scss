@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+html, body, button, input, select, textarea{
+  font-size: 12px;
+  font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+a{
+  text-decoration: none;
+}
+
+ul{
+  list-style: none;
+}
+
+/** 常用样式 **/
+.clear {
+  zoom: 1;
+}
+.clear:after {
+  display: table;
+  content: "";
+  visibility: hidden;
+  clear: both;
+}
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.pad_con{
+  background: #FFFFFF;
+  padding: 0 24px;
+}
+/** element ui 主题颜色 **/
+/* 改变主题色变量 */
+
+/* 改变 icon 字体路径变量，必需 */
