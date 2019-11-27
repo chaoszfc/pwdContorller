@@ -20,11 +20,25 @@ export default {
         return{
             username:"",
             password:"",
+            pubicKey:"",
+            rsaDta:"",
         }
     },
     methods:{
         LoginIn(){
-            
+            let _this = this;
+            _this.$http.sendPublicKey().then(res=>{
+                _this.pubicKey = res.data.keys;
+                let encryptor = new JSEncrypt();  // 新建JSEncrypt对象
+                encryptor.setPublicKey(_this.pubicKey); // 设置公钥
+                const rsaDta = encryptor.encrypt(_this.password); // 进行加密
+                _this.rsaDta = rsaDta;
+                _this.$http.login({
+                    password:_this.rsaDta
+                }).then(res=>{
+                    console.log(res);
+                })
+            })
         }
     }
 }
