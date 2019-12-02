@@ -37,6 +37,9 @@ export default {
                     password:_this.rsaDta
                 }).then(res=>{
                     console.log(res);
+                    if(res.data.code == "200"){
+                        this.$router.push('/index')
+                    }
                 })
             })
         }

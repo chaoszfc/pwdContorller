@@ -12,12 +12,20 @@ import QS from 'qs';
 // }else if(process.env.NODE_ENV == 'production'){
 
 // }
+
 // 创建axios实例
-var instance = axios.create({    timeout: 1000 * 12});
+var instance = axios.create({imeout: 1000 * 12});
+//让axios携带cookie
+instance.defaults.withCredentials=true;
+console.log(instance.defaults);
+var sessionId = getCookie("sessionId") //获取cookie指定字段参数
+instance.defaults.Cookie = sessionId;
 //设置请求超时
 instance.defaults.timeout = 10000;
 //设置post请求头
 instance.defaults.headers.post['content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+
+
 //错误状态码控制
 const errorHandle = (status,other) => {
     //状态码判断
@@ -62,5 +70,16 @@ instance.interceptors.response.use(
         }
     }
 )
+function getCookie(cookieName) {
+    var strCookie = document.cookie;
+    var arrCookie = strCookie.split("; ");
+    for(var i = 0; i < arrCookie.length; i++){
+        var arr = arrCookie[i].split("=");
+        if(cookieName == arr[0]){
+            return arr[1];
+        }
+    }
+    return "";
+}
 
 export default instance;
